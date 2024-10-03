@@ -2,8 +2,7 @@ name: Release CI
 on:
   push:
     branches:
-    - master
-    - alpha
+        -main
 jobs:
   release:
     name: Release
@@ -41,4 +40,4 @@ jobs:
       with:
         semantic_version: 16
       env:
-        GITHUB_TOKEN: ${{ secrets.GT_OKEN }}
+        GITHUB_TOKEN: ${{ secrets.GT_TOKEN }}
