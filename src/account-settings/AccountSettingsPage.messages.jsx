@@ -3,7 +3,7 @@ import { defineMessages } from '@edx/frontend-platform/i18n';
 const messages = defineMessages({
   'account.settings.page.heading': {
     id: 'account.settings.page.heading',
-    defaultMessage: 'Your Account Settings',
+    defaultMessage: 'Your Account Settings in the custom repo',
     description: 'The page heading for the account settings page.',
   },
   'account.settings.loading.message': {
