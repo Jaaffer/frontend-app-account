@@ -13,19 +13,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 20.8.1
-          registry-url: https://npm.pkg.github.com/
-      - name: Check NPM_TOKEN
-        run: |
-          echo "NPM_TOKEN is set ---------------------> ${{ secrets.NPM_TOKEN }}"
-      - name: Create .npmrc
-        run: |
-          echo "@jaaffer:registry=https://npm.pkg.github.com/ //npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-          echo "registry=https://npm.pkg.github.com/" >> ~/.npmrc        
+          registry-url: https://npm.pkg.github.com/ 
       - name: Build, Test
         run: |
           npm ci
           npm run build --if-present
-          npx semantic-release --debug
+          npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
