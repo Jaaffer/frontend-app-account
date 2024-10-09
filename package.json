@@ -1,12 +1,12 @@
 {
-  "name": "@edx/frontend-app-account",
-  "version": "1.0.0-semantically-released",
+  "name": "@jaaffer/frontend-app-account",
+  "version": "1.0.0",
   "description": "User account micro-frontend for Open edX",
   "author": "edX",
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openedx/frontend-app-account.git"
+    "url": "git+https://github.com/Jaaffer/frontend-app-account.git"
   },
   "scripts": {
     "build": "fedx-scripts webpack",
@@ -18,11 +18,12 @@
     "test": "TZ=UTC fedx-scripts jest --coverage --passWithNoTests"
   },
   "bugs": {
-    "url": "https://github.com/openedx/frontend-app-account/issues"
+    "url": "https://github.com/Jaaffer/frontend-app-account/issues"
   },
-  "homepage": "https://github.com/openedx/frontend-app-account#readme",
+  "homepage": "https://github.com/Jaaffer/frontend-app-account#readme",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com."
   },
   "browserslist": [
     "extends @edx/browserslist-config"
@@ -91,5 +92,13 @@
     "react-test-renderer": "17.0.2",
     "reactifex": "1.1.1",
     "redux-mock-store": "1.5.4"
+  },
+  "release": {
+    "branches": ["main", "master"],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm"
+    ]
   }
 }
