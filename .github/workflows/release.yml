@@ -16,7 +16,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - name: Check NPM_TOKEN
         run: |
-          echo "NPM_TOKEN is set ---------------------> {{ secrets.NPM_TOKEN }}"
+          echo "NPM_TOKEN is set ---------------------> ${{ secrets.NPM_TOKEN }}"
       - name: Build, Test
         run: |
           npm ci
