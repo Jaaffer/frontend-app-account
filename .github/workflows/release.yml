@@ -19,7 +19,7 @@ jobs:
           echo "NPM_TOKEN is set ---------------------> ${{ secrets.NPM_TOKEN }}"
       - name: Create .npmrc
         run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          echo "@jaaffer:registry=https://npm.pkg.github.com/ //npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
           echo "registry=https://npm.pkg.github.com/" >> ~/.npmrc        
       - name: Build, Test
         run: |
