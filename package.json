@@ -94,11 +94,14 @@
     "redux-mock-store": "1.5.4"
   },
   "release": {
-    "branches": ["main", "master"],
+    "branches": [
+      { "name": "master" },
+      { "name": "main" , "prerelease": "alpha"}
+    ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      "@semantic-release/github"
+      "@semantic-release/npm"
     ]
   }
 }
