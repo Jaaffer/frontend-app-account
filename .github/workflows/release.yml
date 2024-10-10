@@ -46,10 +46,10 @@ jobs:
     - name: Notify Slack
       uses: rtCamp/action-slack-notify@v2
       with:
-        text: "Package `@jaaffer/frontend-app-account` successfully published! Version: `${{ steps.semantic_release.outputs.nextRelease.version }}`"
+        text: "Package `@jaaffer/frontend-app-account` successfully published! Version: `${{ env.NEXT_RELEASE_VERSION }}`"
       env:
         SLACK_USERNAME: GitHub NPM
         SLACK_ICON: https://stg-xenops-s3-icons.s3.ap-southeast-2.amazonaws.com/github.png
         SLACK_TITLE: Latest NPM Publish Tag
-        SLACK_MESSAGE: ${{ steps.semantic_release.outputs.nextRelease.version }}
+        SLACK_MESSAGE: ${{ env.NEXT_RELEASE_VERSION }}
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
