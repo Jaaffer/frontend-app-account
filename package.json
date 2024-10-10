@@ -81,6 +81,7 @@
     "redux-thunk": "2.4.2",
     "regenerator-runtime": "0.14.1",
     "reselect": "^5.1.1",
+    "semantic-release": "^24.1.2",
     "universal-cookie": "4.0.4"
   },
   "devDependencies": {
@@ -95,14 +96,20 @@
   },
   "release": {
     "branches": [
-      { "name": "master" },
-      { "name": "main" , "prerelease": "alpha"}
+      {
+        "name": "master"
+      },
+      {
+        "name": "main",
+        "prerelease": "alpha"
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
-      ["@semantic-release/exec",
+      [
+        "@semantic-release/exec",
         {
           "publishCmd": "echo \"NEXT_RELEASE_VERSION=${nextRelease.version}\" >> $GITHUB_ENV"
         }
