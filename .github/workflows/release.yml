@@ -1,25 +1,44 @@
-name: Build, Test and Package For Develop Branch
+name: Release CI
 
 on:
   push:
     branches:
       - main
+      - master
 
 jobs:    
-  build:
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 20.8.1
-          registry-url: https://npm.pkg.github.com/ 
-      - name: Build, Test
-        run: |
-          npm ci
-          npm run build --if-present
-          npx semantic-release
-        env:
+      
+    - name: Checkout
+      uses: actions/checkout@master
+    
+    - name: Setup
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.8.1
+        registry-url: https://npm.pkg.github.com/ 
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Lint
+      run: npm run lint
+    
+    - name: Test
+      run: npm run test
+
+    - name: i18n Extract
+      run: npm run i18n_extract
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Release
+      uses: cycjimmy/semantic-release-action@v3
+      env:
           GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
