@@ -1,30 +1,41 @@
-name: ci
+name: Node CI
+
 on:
   push:
     branches:
+    - develop
     - master
   pull_request:
-jobs:
-  tests:
+    branches:
+    - '**'
+
+jobs:    
+  release:
+    name: Release
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        npm-test:
-        - i18n_extract
-        - lint
-        - test
-        node: [18, 20]
+    
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+      
+    - name: Checkout
+      uses: actions/checkout@master
+    
+    - name: Setup
+      uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node }}
-    - run: make requirements
-    - run: make test NPM_TESTS=build
-    - run: make test NPM_TESTS=${{ matrix.npm-test }}
-    - name: Coverage
-      if: matrix.npm-test == 'test'
-      uses: codecov/codecov-action@v4
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        fail_ci_if_error: true
+        node-version: 20.8.1
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Lint
+      run: npm run lint
+    
+    - name: Test
+      run: npm run test
+
+    - name: i18n Extract
+      run: npm run i18n_extract
+    
+    - name: Build
+      run: npm run build
+    
